@@ -36,16 +36,23 @@ group by customer_id
 order by count(visit_id) desc
 ```
 
+```SQL
+
 4. Select w1.id
  from Weather w1 join Weather w2 on w1.recordDate <> w2.recordDate 
  and datediff(w1.recordDate ,w2.recordDate) =1 
  where w1.temperature > w2.temperature
-
+ 
+ ```
+ 
+```SQL
 5.SELECT  a.machine_id ,  round(avg(b.timestamp - a.timestamp),3)  as processing_time from Activity a join Activity b on a.machine_id = b.machine_id and a.process_id=b.process_id where a.activity_type = 'start' and b.activity_type = 'end'
 group by machine_id 
-
+```
+```SQL
 6.select name,bonus from Employee e left join Bonus b using (empId) having bonus <1000 or bonus is null
-
+```
+```SQL
 7.select st.student_id, st.student_name, sb.subject_name, count(e.subject_name) as attended_exams
 from Students st
 join Subjects sb
@@ -56,12 +63,15 @@ and e.subject_name = sb.subject_name
 group by st.student_id, sb.subject_name
 order by st.student_id
 
+```
+```SQL
 8.select distinct m.name
 from employee e join employee m
 on m.id = e.managerid
 group by m.id
 having count(*) >= 5
-
+```
+```SQL
 9.SELECT 
 s.user_id,
 ROUND(AVG(CASE WHEN action = 'confirmed' THEN 1.00 ELSE 0.00 END),2) AS confirmation_rate
