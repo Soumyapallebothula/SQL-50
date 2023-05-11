@@ -24,8 +24,10 @@ Solutions:
 1.Select unique_id,name from Employees e left join EmployeeUNI e1 using (id)
 
 ```
+
 ```SQL
 2.Select p.product_name,s.year,s.price from Sales s join Product p using (product_id) 
+
 ```
 ```SQL
 3.Select customer_id , count(visit_id) as count_no_trans from Visits v left join Transactions t using (visit_id)
