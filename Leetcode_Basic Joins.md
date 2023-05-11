@@ -18,10 +18,12 @@ QNS LINKS:
 
 9.[1934. Confirmation Rate](https://leetcode.com/problems/confirmation-rate/?envType=study-plan-v2&id=top-sql-50)
 
-```sql
+```SQL
 Solutions:
 
 1.Select unique_id,name from Employees e left join EmployeeUNI e1 using (id)
+
+```
 
 2.Select p.product_name,s.year,s.price from Sales s join Product p using (product_id) 
 
