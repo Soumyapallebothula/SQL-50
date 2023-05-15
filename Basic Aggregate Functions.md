@@ -57,3 +57,15 @@ FROM
 GROUP BY 
 	query_name
 ```
+
+
+[1193. Monthly Transactions I](https://leetcode.com/problems/monthly-transactions-i/description/?envType=study-plan-v2&id=top-sql-50)
+
+```sql
+select  DATE_FORMAT(trans_date, '%Y-%m') as  month , country , count(amount) as  trans_count,
+sum(case when state = 'approved' then 1 else 0 end) approved_count,
+sum(case when state = 'approved' then amount else 0 end) approved_total_amount,
+sum(amount) as trans_total_amount
+from transactions 
+group by country ,DATE_FORMAT(trans_date, '%Y-%m')
+```
