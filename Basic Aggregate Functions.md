@@ -69,3 +69,32 @@ sum(amount) as trans_total_amount
 from transactions 
 group by country ,DATE_FORMAT(trans_date, '%Y-%m')
 ```
+
+[1174. Immediate Food Delivery II](https://leetcode.com/problems/immediate-food-delivery-ii/description/?envType=study-plan-v2&id=top-sql-50)
+
+```sql
+
+# Write your MySQL query statement below
+select ROUND(SUM(CASE WHEN order_date = customer_pref_delivery_date THEN 1 else 0 end) / count(customer_id) * 100 , 2)  as immediate_percentage from Delivery
+WHERE (customer_id, order_date) IN
+(SELECT customer_id, min(order_date) as min_date FROM Delivery
+GROUP BY customer_id
+);
+
+```
+
+[550. Game Play Analysis IV](https://leetcode.com/problems/game-play-analysis-iv/description/?envType=study-plan-v2&id=top-sql-50)
+
+```sql
+# Write your MySQL query statement below
+
+with cte as 
+(select distinct player_id , min(event_date) as first_login  from Activity group by player_id)
+
+select 
+ROUND(Count(DISTINCT a.player_id)/(select count(distinct player_id) from Activity) , 2) as fraction
+from Activity a join cte c on a.player_id = c.player_id and a.event_date <> c.first_login
+where datediff(a.event_date ,c.first_login ) = 1
+
+
+```
