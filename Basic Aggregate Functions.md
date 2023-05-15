@@ -44,3 +44,16 @@ select contest_id , round(count(user_id)/ (select count(user_id) from Users) * 1
 group by contest_id
 order by percentage desc,contest_id asc;
 ```
+
+[1211. Queries Quality and Percentage](https://leetcode.com/problems/queries-quality-and-percentage/description/?envType=study-plan-v2&id=top-sql-50)
+
+```sql
+SELECT 
+	query_name,
+	ROUND(AVG(rating / position), 2) AS quality,
+	ROUND(AVG(rating < 3) * 100, 2) AS poor_query_percentage 
+FROM 
+	Queries
+GROUP BY 
+	query_name
+```
