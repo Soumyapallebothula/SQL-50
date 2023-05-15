@@ -21,3 +21,26 @@ group by project_id
 
 ```
 
+[1633. Percentage of Users Attended a Contest](https://leetcode.com/problems/percentage-of-users-attended-a-contest/description/?envType=study-plan-v2&id=top-sql-50)
+```sql
+#Using CTEs
+WITH user_count as (
+    SELECT COUNT(*) as total_users
+    FROM Users
+    )
+
+SELECT contest_id, 
+       ROUND(COUNT(user_id) / total_users * 100, 2) as "percentage"
+FROM Register
+JOIN user_count
+GROUP BY contest_id
+ORDER BY percentage DESC, contest_id;
+
+
+```
+```sql
+#Using group by
+select contest_id , round(count(user_id)/ (select count(user_id) from Users) * 100,2) as percentage from users u join register r using(user_id)
+group by contest_id
+order by percentage desc,contest_id asc;
+```
