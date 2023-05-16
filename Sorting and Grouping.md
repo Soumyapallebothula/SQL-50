@@ -18,6 +18,7 @@ with cte as
 (select *, RANK() over(partition by product_id order by year) as rnk 
 from sales)
 
+# Approach 2
 select product_id, year as first_year, quantity,price 
 from cte where rnk = 1
 
