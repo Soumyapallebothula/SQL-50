@@ -78,4 +78,42 @@ group by customer_id
 having count(distinct product_key)=(select count(distinct product_key) from product)
 ```
 
+[610.Triangle Judgement](https://leetcode.com/problems/triangle-judgement/description/?envType=study-plan-v2&id=top-sql-50)
+
+```SQL
+select * , case when x + y > z and x + z > y and y + z > x then 'Yes' else 'No' end as triangle from Triangle
+
+```
+[180.Consecutive Numbers](https://leetcode.com/problems/consecutive-numbers/?envType=study-plan-v2&id=top-sql-50)
+
+```sql
+Step 1 : 
+
+SELECT num,LAG(num) OVER () AS PrevNum, LEAD(num) OVER (ORDER BY id) AS NextNum from Logs
+
+output:
+
+| num | PrevNum | NextNum |
+| --- | ------- | ------- |
+| 1   | null    | 1       |
+| 1   | 1       | 1       |
+| 1   | 1       | 2       |
+| 2   | 1       | 1       |
+| 1   | 2       | 2       |
+| 2   | 1       | 2       |
+| 2   | 2       | null    |
+
+```
+```sql
+
+Step 2:
+
+// Make the above as a sub query and retrive the num from that by writing the where condition:
+
+Solution: 
+select distinct num as ConsecutiveNums 
+(SELECT num,LAG(num) OVER () AS PrevNum, LEAD(num) OVER (ORDER BY id) AS NextNum from Logs) l 
+where num = PrevNum and num = NextNum
+
+```
 
