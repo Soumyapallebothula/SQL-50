@@ -54,5 +54,27 @@ SELECT IF(COUNT(num) = 1, num, null) AS num FROM MyNumbers
 GROUP BY num
 ORDER BY num DESC LIMIT 1;
 ```
+[1045. Customers Who Bought All Products](https://leetcode.com/problems/customers-who-bought-all-products/descriptio](https://leetcode.com/problems/customers-who-bought-all-products/?envType=study-plan-v2&id=top-sql-50)
+
+```sql
+# Approach 1 
+WITH product_list AS (
+SELECT GROUP_CONCAT(product_key ORDER BY product_key) AS all_products
+FROM Product
+)
+SELECT customer_id
+FROM Customer
+GROUP BY customer_id
+HAVING GROUP_CONCAT(DISTINCT product_key ORDER BY product_key) = (SELECT all_products FROM product_list);
+
+```
+```sql
+
+#Approach 2
+select customer_id
+from customer c
+group by customer_id
+having count(distinct product_key)=(select count(distinct product_key) from product)
+```
 
 
