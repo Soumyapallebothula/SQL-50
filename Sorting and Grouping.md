@@ -54,7 +54,8 @@ SELECT IF(COUNT(num) = 1, num, null) AS num FROM MyNumbers
 GROUP BY num
 ORDER BY num DESC LIMIT 1;
 ```
-[1045. Customers Who Bought All Products](https://leetcode.com/problems/customers-who-bought-all-products/descriptio](https://leetcode.com/problems/customers-who-bought-all-products/?envType=study-plan-v2&id=top-sql-50)
+
+[1045. Customers Who Bought All Products](https://leetcode.com/problems/customers-who-bought-all-products/description/?envType=study-plan-v2&id=top-sql-50)
 
 ```sql
 # Approach 1 
